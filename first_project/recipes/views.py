@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
 #  HTTP REQUEST <- HTTP RESPONSE
 
 # HTTP REQUEST
@@ -13,9 +11,9 @@ def home(request):
     # return HTTP Response
 
 
-def about(request):
-    return render(request, 'temp/temp.html')
-
-
 def contact(request):
-    return HttpResponse('Contact')
+    return render(request, 'recipes/contato.html')
+
+
+def about(request):
+    return render(request, 'recipes/sobre.html')
