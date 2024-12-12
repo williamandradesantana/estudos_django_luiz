@@ -1,7 +1,4 @@
 from django.shortcuts import render
-#  HTTP REQUEST <- HTTP RESPONSE
-
-# HTTP REQUEST
 
 
 def home(request):
@@ -12,7 +9,7 @@ def home(request):
 
 
 def contact(request):
-    return render(request, 'recipes/contato.html')
+    return render(request, 'recipes/contato.html', context={'contact': "(79) 99916-5932"})
 
 
 def about(request):
