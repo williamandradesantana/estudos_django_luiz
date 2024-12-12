@@ -2,9 +2,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'recipes/home.html', status=201, context={
-        'name': 'William',
-    })
+    return render(request, 'recipes/home.html', status=201, context={'name': 'William', 'team': 'Flamengo'})
     # return HTTP Response
 
 
