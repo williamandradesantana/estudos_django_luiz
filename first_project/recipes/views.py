@@ -2,8 +2,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'recipes/home.html', status=201, context={'name': 'William', 'team': 'Flamengo'})
-    # return HTTP Response
+    return render(request, 'recipes/pages/home.html', status=201, context={'name': 'William', 'team': 'Flamengo'})
 
 
 def contact(request):
@@ -12,3 +11,7 @@ def contact(request):
 
 def about(request):
     return render(request, 'recipes/sobre.html')
+
+
+def temporary(request):
+    return render(request, 'index.html', status=201, context={'situation': 'temporary'})
