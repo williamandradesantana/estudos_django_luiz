@@ -6,11 +6,11 @@ def home(request):
 
 
 def contact(request):
-    return render(request, 'recipes/contato.html', context={'contact': "(79) 99916-5932"})
+    return render(request, 'recipes//pages/contato.html', context={'contact': "(79) 99916-5932"})
 
 
 def about(request):
-    return render(request, 'recipes/sobre.html')
+    return render(request, 'recipes/pages/sobre.html')
 
 
 def temporary(request):
