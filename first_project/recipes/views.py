@@ -6,7 +6,7 @@ def home(request):
 
 
 def recipe(request, id):
-    return render(request, 'recipes/pages/home.html',)
+    return render(request, 'recipes/pages/recipe-view.html',)
 
 def contact(request):
     return render(request, 'recipes//pages/contato.html', context={'contact': "(79) 99916-5932"})
