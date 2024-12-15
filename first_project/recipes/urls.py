@@ -1,9 +1,10 @@
 from django.urls import path
-from recipes.views import home, about, contact, temporary
+from . import views
 
 # dominio/recipes/home
 urlpatterns = [
-    path('', home),  # Home
-    path('sobre/', about),
-    path('contato/', contact),
+    path('', views.home),  # Home
+    path('sobre/', views.about),
+    path('contato/', views.contact),
+    path('recipes/<int:id>/', views.recipe)
 ]
