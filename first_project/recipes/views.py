@@ -9,7 +9,10 @@ def home(request):
 
 def recipe(request, id):
     return render(request, 'recipes/pages/recipe-view.html',
-        context={'recipe': factory.make_recipe()})
+        context={
+            'recipe': factory.make_recipe(),
+            'is_detail_page': True
+        })
 
 def contact(request):
     return render(request, 'recipes//pages/contato.html', context={'contact': "(79) 99916-5932"})
