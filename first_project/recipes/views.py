@@ -2,12 +2,10 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import Http404
 from utils.recipes import factory
 
-
 from recipes.models import Recipe
 
 def home(request):
-
-    recipes = Recipe.objects.filter(is_published=True).order_by('-id')
+    recipes = get_list_or_404(Recipe.objects.filter(is_published=True).order_by('-id'))
 
     return render(request, 'recipes/pages/home.html', 
         status=201, 
