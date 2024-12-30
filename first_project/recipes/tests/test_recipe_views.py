@@ -55,7 +55,14 @@ class RecipeViewsTest(TestCase):
         )
 
         response = self.client.get(reverse('recipes:home'))
+        content = response.content.decode('utf-8')
+        context = response.context['recipes']
+
+        self.assertIn('Recipe Title', content)
+        self.assertIn('5 Porções', content)
+        self.assertEqual(len(context), 1)
         self.assertEqual(response.status_code, 200)
+        ...
 
     def test_recipe_category_view_function_is_correct(self):
         view = resolve(reverse('recipes:category', kwargs={'category_id': 1000}))
