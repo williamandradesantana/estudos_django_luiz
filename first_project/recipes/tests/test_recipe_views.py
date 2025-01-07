@@ -114,7 +114,7 @@ class RecipeViewsTest(RecipeTestBase):
     def test_recipe_detail_template_dont_loads_recipe_not_published(self):
         """ Test recipe is_published=False dont show """
         # Need a recipe for this test
-        recipe = self.make_recipe(is_published=True)
+        recipe = self.make_recipe(is_published=False)
         
         response = self.client.get(reverse('recipes:recipe', kwargs={'id': recipe.id}))
 
