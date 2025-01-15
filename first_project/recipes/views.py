@@ -33,8 +33,11 @@ def recipe(request, id):
             'is_detail_page': True
         })
 
+def search(request):
+    ...
+
 def contact(request):
-    return render(request, 'recipes//pages/contato.html', context={'contact': "(79) 99916-5932"})
+    return render(request, 'recipes/pages/contato.html', context={'contact': "(79) 99916-5932"})
 
 
 def about(request):
