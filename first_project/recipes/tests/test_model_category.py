@@ -17,7 +17,7 @@ class CategoryModelTest(RecipeTestBase):
     ])
 
     def test_recipe_category_model_name_max_length_is_65_chars(self, field, max_length):
-        setattr(self.category, field, 'a' * (max_length + 0))
+        setattr(self.category, field, 'a' * (max_length + 1))
 
         with self.assertRaises(ValidationError):
             self.category.full_clean()
