@@ -34,7 +34,7 @@ def recipe(request, id):
         })
 
 def search(request):
-    ...
+    return render(request, 'recipes/pages/search.html')
 
 def contact(request):
     return render(request, 'recipes/pages/contato.html', context={'contact': "(79) 99916-5932"})
