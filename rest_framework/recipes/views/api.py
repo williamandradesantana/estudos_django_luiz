@@ -9,11 +9,16 @@ from ..serializers import RecipeSerializer, TagSerializer
 
 from tag.models import Tag
 
-@api_view(["GET"])
+@api_view(["get", "post"])
 def recipe_api_list(request):
-    recipes = Recipe.objects.all()
-    serializer = RecipeSerializer(instance=recipes, many=True, context={'request': request})
-    return Response(serializer.data)
+    
+    if request.method == "GET":
+        recipes = Recipe.objects.all()
+        serializer = RecipeSerializer(instance=recipes, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        return Response("POST", status=status.HTTP_201_CREATED)
 
 @api_view(["GET"])
 def recipe_api_detail(request, pk):
