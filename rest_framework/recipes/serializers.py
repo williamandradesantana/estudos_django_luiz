@@ -6,6 +6,8 @@ from tag.models import Tag
 
 from .models import Recipe
 
+from collections import defaultdict
+
 class TagSerializer(serializers.ModelSerializer):
     # id = serializers.IntegerField()
     # name = serializers.CharField()
@@ -36,3 +38,25 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_preparation(self, recipe):
         return f'{recipe.preparation_time} {recipe.preparation_time_unit}'
+    
+    def validate(self, attrs):
+        super_validate = super().validate(attrs)
+
+        title = attrs.get("title")
+        description = attrs.get("description")
+
+        if title == description:
+            raise serializers.ValidationError(
+                {
+                    "title": ["Posso", "ter", "mais de um erro"],
+                    "description": ["Posso", "ter", "mais de um erro"],
+                }
+            )
+
+        return super_validate
+    def validate_title(self, value):
+        title = value
+        
+        if len(title) < 5:
+            raise serializers.ValidationError("Must have at least 5 chars.")
+        return title
