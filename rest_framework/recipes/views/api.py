@@ -27,21 +27,32 @@ def recipe_api_list(request):
         )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view(["GET"])
+@api_view(["GET", "PATCH", "DELETE"])
 def recipe_api_detail(request, pk):
     recipe = get_object_or_404(
         Recipe.objects.all(), pk=pk
     )
-    serializer = RecipeSerializer(instance=recipe, many=False, context={'request': request})
-    return Response(serializer.data)
-    
-    # recipe = Recipe.objects.all().filter(pk=pk).first()
-    # if recipe:
-    #     serializer = RecipeSerializer(instance=recipe, many=False)
-    #     return Response(serializer.data)
-    # else:
-    #     return Response({'detail': 'eita'}, status=status.HTTP_418_IM_A_TEAPOT)
 
+    if request.method == "GET":
+        serializer = RecipeSerializer(instance=recipe, many=False, context={'request': request})
+        return Response(serializer.data)
+    
+    elif request.method == "PATCH":
+        serializer = RecipeSerializer(
+            instance=recipe, 
+            data=request.data, 
+            many=False, 
+            context={'request': request},
+            partial=True)
+        
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    
+    elif request.method == "DELETE":
+        recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 @api_view(["GET"])
 def tag_api_detail(request, pk):
     tag = Tag.objects.get(pk=pk)
